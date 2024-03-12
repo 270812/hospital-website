@@ -1,0 +1,51 @@
+
+
+
+
+
+
+
+{% extends "admin/dash.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/doc.css' %}">
+{% endblock css %}
+
+{% block content %}
+{% if upcoming_appointments %}
+    <h1>Upcoming Appointments</h1>
+    <table class="table table-bordered" style="margin-left: 30px; margin-top: 50px;">
+        <tr style="gap: 10px; color: royalblue;">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Doctor</th>
+            <th>Contact Number</th>
+            <th>Place</th>
+            <th>Day</th>
+            <th>Show</th>
+        </tr>
+        {% for appointment in upcoming_appointments %}
+        <tr>
+            <td>{{ appointment.id }}</td>
+            <td>{{ appointment.name }}</td>
+            <td>{{ appointment.doctors }}</td>
+            <td>{{ appointment.number }}</td>
+            <td>{{ appointment.place }}</td>
+            <td>{{ appointment.day }}</td>
+            <td>
+                <a href="{% url 'pres1' appointment.id %}">
+                    <i class="fa-solid fa-file-circle-plus icon"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+   
+    <h2 style="color: red; text-align: center;">There are no upcoming appointments.</h2>
+
+    
+
+{% endif %}
+{% endblock content %}

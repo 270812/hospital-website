@@ -1,0 +1,40 @@
+Add your custom styles here
+.message {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+Style form labels
+.form-label {
+    font-weight: bold;
+}
+
+
+ .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+ 
+} 
+
+ .btn-primary:hover {
+    background-color: #0056b3;
+} 
+
+.form-box h2 {
+    margin-top: 0; 
+    font-size: 24px; 
+    margin-bottom: 20px; 
+}
+
+
+
+
+
+
+

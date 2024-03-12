@@ -1,0 +1,168 @@
+{% extends "admin/dash.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/doc.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+    
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+ 
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+       
+    }
+    
+    .form-group label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    .checkbox-group {
+        margin-top: 10px;
+    }
+    
+    .checkbox-group label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+        margin-right: 5px;
+    }
+    
+    .edit-tag {
+        font-size: 12px;
+        color: #666;
+    }
+    
+    .submit-btn {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .submit-btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+
+
+<!-- <div class="container">
+    <h2>USER FORM</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name " value="{{forms.name}}" required>
+            
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" value="{{forms.email}}" required >
+            
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+         
+          
+        </div>
+        <div class="checkbox-group">
+            <label><input type="checkbox" id="is-doctor" name="is-doctor" value="{{forms.doctor}}" required> Doctor</label>
+        
+            <label><input type="checkbox" id="is-admin" name="is-admin" value="{{ forms.is_admin }}" required> Admin</label>
+
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</div> -->
+
+
+
+
+
+
+
+
+
+<div class="container">
+    <h2>USER FORM</h2>
+    <form method="post">{% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" value="{{forms.name}}" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" value="{{forms.email}}" required>
+        </div>
+      
+        <button type="button" class="btn btn-primary" id="updatePasswordBtn">Update Password</button>
+       
+        <div class="form-group" id="passwordGroup" style="display: none;">
+            <label for="password">Update password</label>
+            <input type="password" id="password" name="password" placeholder="Enter new password">
+        </div>
+        <div class="checkbox-group">
+            <label><input type="checkbox" id="is-doctor" {% if forms.doctor %}checked{% endif %} name="is-doctor"  > Doctor</label>
+            <label><input type="checkbox" id="is-admin" {% if forms.is_admin %}checked{% endif %} name="is-admin"  > Admin</label>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</div>
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Button to toggle password field visibility
+        var updatePasswordBtn = document.getElementById("updatePasswordBtn");
+        // Password field group
+        var passwordGroup = document.getElementById("passwordGroup");
+
+        // Add event listener to the button
+        updatePasswordBtn.addEventListener("click", function() {
+            // Toggle visibility of the password field group
+            if (passwordGroup.style.display === "none") {
+                passwordGroup.style.display = "block";
+            } else {
+                passwordGroup.style.display = "none";
+            }
+        });
+    });
+</script>
+
+
+{% endblock content %}

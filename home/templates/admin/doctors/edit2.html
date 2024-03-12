@@ -1,0 +1,48 @@
+{% extends "admin/dash.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/form2.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+<h1>
+    Doctors DashBoard
+</h1>
+<div class="container" style="overflow-y: scroll;">
+    <form method="post" style="margin-top: 60px;"  enctype="multipart/form-data" >
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Dr name" value="{{forms.name}}" required>
+        </div>
+        <label for="description">Departments</label>
+        <select class="form-control" name="departments" id="department">
+            <option value="">Select Department</option>
+            {% for d in dep%}
+            <option value="{{ d.id }}">{{ d.name }}</option>
+            {% endfor %}
+        </select>
+      
+        <div class="form-group">
+            <label for="image">Image:</label><br>
+            <input type="file" class="form-control-file"  name="image" id="image" value="{{forms.image}}" required>
+        </div><br>
+        <div class="form-group">
+            <label for="days">Availability:</label><br>
+             <input type="checkbox" name="monday" id="monday"  {% if forms.monday %} checked {% endif %}  > Monday<br> 
+            <input type="checkbox" name="tuesday"  id="tuesday"  {% if forms.tuesday %} checked {% endif %} > Tuesday<br>
+            <input type="checkbox" name="wednesday" id="wednesday"  {% if forms.wednesday %} checked {% endif %}  > Wednesday<br>
+            <input type="checkbox" name="thursday" id="thursday"  {% if forms.thursday %} checked {% endif %}  > Thursday<br>
+            <input type="checkbox" name="friday" id="friday"  {% if forms.friday %} checked {% endif %} > Friday<br>
+            <input type="checkbox" name="saturday"  id="saturday"  {% if forms.saturday %} checked {% endif %} > Saturday<br>
+            <input type="checkbox" name="days" > Sunday<br>
+        </div><br>
+        <button type="submit" class="btn btn-primary text-white">
+            Save changes
+        </button>
+    </form>
+</div>
+
+{% endblock content %}

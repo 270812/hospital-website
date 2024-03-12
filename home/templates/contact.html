@@ -1,0 +1,192 @@
+{% extends "index.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock css %}
+
+{% block content %}
+<main class="container"   style="background-image: url(); background-repeat: no-repeat; background-size: cover;">
+    <div class="" style="margin-top: 200px; margin-bottom: 80px;">
+        
+        <div class="row">
+            <div class="col-md-6 message form-box" >
+                <h1>Our Location</h1>
+                <h5> <br>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Medcare Hospital Al safa Near al safa park-Al Hadiqa road
+                </h5>
+                <h5>
+                    <i class="fa-solid fa-phone"></i>
+                    +91 8139801807
+                </h5>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5731.4673547351!2d55.240742995629965!3d25.183043763584344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69e156fc7c6f%3A0x6c658ffc9ba48378!2sMedcare%20Hospital%20Al%20Safa!5e0!3m2!1sen!2sin!4v1706849002652!5m2!1sen!2sin" width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="col-md-6 message form-box"   >
+                <form id="contact-form" method="post">
+                    {% csrf_token %}
+                    <h1>Appointment Booking</h1>
+                    <div class="form-group">
+                         <label for="name" class="form-label">First Name</label>
+                        <input type="text" class="form-control" name="name" id="name">
+                        <label for="number" class="form-label">contact number</label>
+                        <input type="number" class="form-control"  name="number"id="number">
+                        <span id="phone-error" style="color: red;"></span><br>
+                        <label for="department" class="form-label">Department</label>
+
+                        <select class="form-control"  name="departments" id="department" >
+                            <option value=""></option>
+                            {% for d in dep %}
+                            
+                            <option value="{{d.id}}">{{d.name}}</option>
+                            
+                            {% endfor %}
+                        </select>
+                        <label for="doctors" class="form-label">Doctors</label>
+                          <select class="form-control" name="doctor" id="doctors">
+                            <option value=""></option>
+
+                            {% comment %} <select class="form-control" name="doctor" id="doctors">
+                                <option value=""></option>
+                                {% for doctor in doctors %}
+                                <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+                                {% endfor %}
+                            </select> {% endcomment %}
+
+
+                             {% comment %} <select class="form-control" name="doctor" id="doctors">
+                                <option value=""></option>
+                                {% for do in doctors %}
+                                <option value="{{ doctors.id }}">{{ doctors.name }}</option>
+                                {% endfor %}
+                            </select> {% endcomment %}
+                            
+                                
+                            
+                        </select>
+                        <label for="day" class="form-label">Day</label>
+                        <input type="date" class="form-control"  name="day" id="day"> 
+                        <label for="place" class="form-label">Your place</label>
+                        <input type="text" class="form-control"  name="place" id="place"> 
+                    </div><br><br><br> 
+
+
+
+
+
+
+
+
+
+
+
+     
+
+
+
+                  <button type="submit" class="btn btn-primary">
+                    submit
+                  </button>
+                    <!-- <button type="submit" class="btn btn-primary">
+                        <a style="color: white; text-decoration: none;" href="">submit</a>
+                    </button> -->
+
+
+
+                </form><br><br>
+            </div>
+
+
+           
+        </div>
+    </div>
+</main>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        
+        function validatePhoneNumber() {
+            var phoneNumber = document.getElementById("number").value;
+            var phoneNumberLength = phoneNumber.length;
+
+            if (phoneNumberLength < 10 || phoneNumberLength > 12) {
+            
+                document.getElementById("phone-error").innerText = "Phone number must be between 10 and 12 digits.";
+                return false; 
+            }
+
+            
+            document.getElementById("phone-error").innerText = "";
+            return true; 
+        }
+
+        
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+            
+            if (!validatePhoneNumber()) {
+                event.preventDefault();
+            }
+        });
+    });
+   {% comment %} document.getElementById('handleOnChange');
+   console.log(handleOnChange)
+     {% endcomment %}
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var departmentSelect = document.getElementById("department");
+        var doctorsSelect = document.getElementById("doctors");
+
+        departmentSelect.addEventListener("change", function () {
+            var departmentId = departmentSelect.value;
+            console.log(departmentId);
+            {% comment %} doctorsSelect.innerHTML = "<option value=''>Select Doctor</option>"; {% endcomment %}
+
+            $.ajax({
+                url: `/doctor_check/${departmentId}`, // Using backticks for dynamic URL
+                type: 'GET',
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function(data) {
+                    console.log('Data received:');
+                    
+                    var doctorsData = JSON.parse(data);
+                    console.log(doctorsData);
+                   
+        
+        // Extract name and id from each item in the array
+                    doctorsData.forEach(function(doctor) {
+
+                        var doctorId = doctor.pk;
+                        var doctorName = doctor.fields.name;
+                        console.log(doctorId);
+                        console.log(doctorName);
+                        console.log('Doctor ID:', doctorId);
+                        console.log('Doctor Name:', doctorName);
+                        var option = document.createElement("option");
+                                    option.value = doctorId;
+                                    option.text = doctorName;
+                        // const doctor_option = `
+                        // <option value="${doctorId}">${doctorName}</option>
+                        // `
+                        doctorsSelect.append(option)
+                    });
+
+    
+                   
+                },
+                error: function(xhr, status, error) {
+                    console.log('Error occurred:', error);
+                    console.error('Status:' + status);
+                    {% comment %} console.error('Error thrown:' + errorThrown); {% endcomment %}
+                    console.error(xhr.responseText);
+                }
+            });
+           
+            
+        });
+    });
+</script>
+{% endblock content %}

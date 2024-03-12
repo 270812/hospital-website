@@ -1,0 +1,38 @@
+
+
+
+
+{% extends "admin/dash.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/doc.css' %}">
+{% endblock css %}
+
+{% block content %}
+<h1>Patients information</h1>
+<table class="table table-bordered" style="margin-left: 30px; margin-top: 50px;">
+    <tr style="gap: 10px; color:royalblue;">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Doctor</th>
+        <th>Contact Number</th>
+        <th>Place</th>
+        <th>Show</th>
+    </tr>
+    {% for patient in patient %}
+    <tr>
+        <td>{{ patient.id }}</td>
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.doctors}}</td>
+        <td>{{ patient.number }}</td>
+        <td>{{ patient.place }}</td>
+       
+        <td>
+            <a href="{% url 'table' patient.id %}">show</a>
+            <i class="fa-solid fa-eye"></i>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+      {% endblock content %}

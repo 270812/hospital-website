@@ -1,0 +1,17 @@
+
+label {
+    color: #333; 
+    font-weight: bold; 
+}
+
+
+.form-control {
+    color: #555; 
+    font-family: Arial, sans-serif; 
+}
+
+h1{
+    color: blue;
+    text-align: center;
+    font-family: cursive;
+}

@@ -1,0 +1,79 @@
+
+ .doctor .image img {
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    margin-bottom: 10px; 
+}  
+
+
+.image img {
+    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    border: 5px solid transparent; 
+}
+
+.image img.zoom {
+    transform: scale(1.1);
+}
+.doctor .name h5, .doctor .name p{
+    font-family:cursive;
+    
+} 
+
+.book-slot-link {
+    display: none; 
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #000;
+}
+
+.image:hover .book-slot-link {
+    display: block;
+}
+.doctor a{
+    text-decoration: none;
+    background-color: blue;
+    color: lightblue;
+    border-radius: 1px solid;
+}
+.col-md-12.position-relative.content {
+    position: relative;
+}
+.first,
+.second {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px; 
+    background-color: rgba(255, 255, 255, 0.7); 
+    z-index: 1; 
+    width: calc(50% - 20px);
+    overflow-y: auto; 
+    max-height: 100%; 
+    border-radius: 8px; 
+}
+.second {
+    left: 50%; 
+}
+.first h2, .second h2 {
+    font-size: 24px; 
+     
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    font-weight: bold;
+    color: blue;
+}
+.first p, .second p {
+    font-size: 16px; 
+    font-family: cursive;
+}
+
+
+
+

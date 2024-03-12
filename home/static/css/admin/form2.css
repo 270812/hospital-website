@@ -1,0 +1,26 @@
+/* Add your custom styles here */
+
+/* Style for form labels */
+label {
+    color:steelblue;
+    font-weight: bold; 
+    font-size: 20px;
+}
+
+.form-control {
+    border: 1px solid blue;
+    border-radius: 5px; 
+    padding: 8px;
+    margin-bottom: 15px; 
+    width: 100%; 
+    box-sizing: border-box;  
+}
+
+
+.section_2 h1 {
+    color: blue;
+    text-align: center;
+    font-family: cursive;
+    font-style: italic;
+    font-weight: bold;
+ }

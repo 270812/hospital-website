@@ -1,0 +1,134 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color:darkred
+  }
+  
+  .container {
+    margin: 20px;
+  }
+  
+  h1 {
+    color:mediumblue;
+    text-align: center;
+    font-variant: small-caps;
+  }
+  
+  .btn-primary {
+    background-color:darkred;
+    border: none;
+  }
+  
+  .btn-primary a {
+    color: #fff;
+    text-decoration: none;
+    font-style: oblique;
+  }
+  
+ 
+  /* .table {
+    margin-top: 40px;
+  }
+  
+  .table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid darkgray;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .table td {
+    color: #666;
+  }
+  
+  .table img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .table a {
+    margin-right: 10px;
+    color:darkgray;
+  }
+  
+  .table a:hover {
+    color:darkred;
+  } */
+  /* Define the font family for the table */
+.table {
+  margin-top: 40px;
+  font-family: Arial, sans-serif;
+}
+
+/* Style the table */
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Style table headers */
+.table th,
+.table td {
+  border: 1px solid black;
+  padding: 10px; /* Increase padding for better readability */
+  text-align: left;
+}
+
+/* Style table header background and text color */
+.table th {
+  background-color: #f2f2f2;
+  color: darkblue;
+}
+
+/* Style table data text color */
+.table td {
+  color:crimson;
+}
+
+/* Style table images */
+.table img {
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Style links within the table */
+.table a {
+  margin-right: 10px;
+  color: darkgray;
+  text-decoration: none; /* Remove underline from links */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+/* Hover effect for links */
+.table a:hover {
+  color: darkred;
+}
+
+  .section_2 {
+    background-color:lightgray;
+    width: 100%;
+    color: #fff;
+    padding-top: 20px;
+    /* overflow-y: auto; Add scroll for overflow */
+    height: 100vh; /* Set a fixed height for scroll */}
+  
+
+
+
+
+ 
+  

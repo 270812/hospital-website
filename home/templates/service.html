@@ -1,0 +1,485 @@
+{% extends "index.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/service.css' %}">
+{% endblock css %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <div class="row" >
+            <div class="col-md-6 emergency">
+                <div class="image">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBga5Gg1ZlacBbAMtpngAtI4oMSg1siFYFZw&usqp=CAU" class="img-fluid" alt="">
+                </div>
+                <div class="para">
+                    <h5>
+
+                        24*7 AMBULANCE SERVICES
+                    </h5>
+                </div>
+
+            </div>
+            <div class="col-md-6 diagnostic">
+                <div class="image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxmB4ECFUZ3RZJGi3DxJvO2G3NdAGo-FwtRg&usqp=CAU"  class="img-fluid" alt="">
+                </div>
+                <div class="para">
+                    <h5>
+                        super speciality diagnostc services
+                    </h5>
+
+                </div>
+
+            </div>
+            <div class="col-md-6 pharmacy">
+                <div class="image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDjdNMs7_1K7BVFm66Byl5KuwZlusRj8vm_A&usqp=CAU" class="img-fluid" alt="">
+
+                </div>
+                <div class="para">
+                    <h5>
+                        anytime pharmacy services
+                    </h5>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock content %}
+
+
+
+
+
+
+
+
+{% extends "admin/dash.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/doc.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+<h1>Patients information</h1>
+<table class="table table-borderd" style="margin-left: 30px; margin-top: 50px;">
+    <tr style="gap: 10px; color:royalblue; ">
+        
+        <th>id</th>
+        <th>Name</th> 
+        <th>number</th>
+        <th>place</th>
+        <th>show</th>
+        
+
+    </tr>
+    {% for patient in patients_data %}
+    <tr>
+        <td>{{ patient.id }}</td>
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.number }}</td>
+        <td>{{ patient.place }}</td>
+        <td><table class="table table-borderd" style="margin-left: 30px; margin-top: 50px;">
+            <tr style="gap: 10px; color:royalblue; ">
+                
+                <th>id</th>
+                <th>Name</th> 
+                <th>number</th>
+                <th>place</th>
+                <th>show</th>
+                
+        
+            </tr>
+            {% for patient in patients_data %}
+            <tr>
+                <td>{{ patient.id }}</td>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.number }}</td>
+                <td>{{ patient.place }}</td>
+                <td><i class="fa-solid fa-eye">
+                    <a href=""></a>
+                </i></td>
+            </tr>
+            {% endfor %}
+        </table>
+{% endblock content %} 
+
+
+
+
+
+
+
+
+{% extends "admin/dash.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/doc.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+    
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+ 
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+       
+    }
+    
+    .form-group label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    .checkbox-group {
+        margin-top: 10px;
+    }
+    
+    .checkbox-group label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+        margin-right: 5px;
+    }
+    
+    .edit-tag {
+        font-size: 12px;
+        color: #666;
+    }
+    
+    .submit-btn {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .submit-btn:hover {
+        background-color: #0056b3;
+    }
+    .icon{
+        color: darkslategray;
+        font-size: 15px;
+    }
+</style>
+
+
+
+<div class="container">
+    <h2>USER FORM</h2>
+    <form>
+            <form method="post"> {% csrf_token %}
+                <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+            <span class="edit-tag">
+                <a href="{% url 'user_edit' %}">
+                    <i class="fa-regular fa-pen-to-square icon"></i>
+                </a>
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+            <span class="edit-tag">
+                <a href="{% url 'user_edit' %}">
+                    <i class="fa-regular fa-pen-to-square icon"></i>
+                </a>
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+            <span class="edit-tag">
+                <a href="{% url 'user_edit' %}">
+                    <i class="fa-solid fa-eye icon"></i>
+                </a>
+            </span>
+        </div>
+        <div class="checkbox-group">
+            <label><input type="checkbox" id="is-doctor" name="is-doctor"> Doctor</label>
+            <label><input type="checkbox" id="is-admin" name="is-admin"> Admin</label>
+            <a href="{% url 'user_edit' %}">
+                <i class="fa-regular fa-pen-to-square icon"></i>
+            </a>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+<!-- {% extends "index.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/final.css' %}">
+{% endblock css %}
+
+
+
+{% block content %}
+<div class="container" style="margin-top: 100px; margin-bottom: 100px;">
+    <div class="row">
+        <div class="col">
+            <h1>
+                <i class="fa-solid fa-circle-check"></i ><br>
+                Appointment registered succesfully
+            </h1>
+            <h5>We will send you message regarding the date and time .please kndly check your DMs</h5><br>
+            <h5 style="font-family: 'Courier New', Courier, monospace; font-style: italic; font-weight: bold;">THANK YOU FOR CHOOSING US</h5>
+        </div>
+    </div>
+</div>
+
+{% endblock content %} -->
+
+
+
+
+
+
+
+
+<!-- {% comment %} {% extends "admin/dash.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/doc.css' %}">
+{% endblock css %}
+
+{% block content %}
+<h1>Previous Appointments</h1>
+<table class="table table-bordered" style="margin-left: 30px; margin-top: 50px;">
+    <tr style="gap: 10px; color: royalblue;">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Doctor</th>
+        <th>Contact Number</th>
+        <th>Place</th>
+        <th>Day</th>
+        <th>Show</th>
+    </tr>
+    {% for appointment in previous_appointments %}
+    <tr>
+        <td>{{ appointment.id }}</td>
+        <td>{{ appointment.name }}</td>
+        <td>{{ appointment.doctors }}</td>
+        <td>{{ appointment.number }}</td>
+        <td>{{ appointment.place }}</td>
+        <td>{{ appointment.day }}</td>
+        <td>
+            <a href="">
+                <i class="fa-solid fa-eye"></i>
+            </a>
+     
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %} {% endcomment %}
+
+ -->
+
+
+
+
+
+
+ class UserManager(BaseUserManager):
+    def create_user(self,name,email,password=None):
+        if not email:
+            raise ValueError("Users must have email")
+        # user = self.model(
+        #     email=self.normalize_email(email),
+        #     name=name,
+        # )
+        user = self.normalize_email(email)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+    def create_superuser(self,name,email,password):
+        user = self.create_user(
+            name=name,
+            email=self.normalize_email(email),
+            password=password
+        )
+        user.is_admin = True
+        user.is_active =True
+        user.is_staff = True
+        user.is_superuser = True
+        user.is_doctor = False
+        user.save(using=self._db)
+        return user
+    
+
+
+class User (AbstractBaseUser):
+    name = models.CharField(max_length=20)
+    email = models.EmailField(verbose_name='email ddress', max_length=40, unique=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True,null=True,blank=True)
+    is_staff = models.BooleanField(default=False,null=True,blank=True)
+    is_admin = models.BooleanField(default=False,null=True,blank=True)
+    is_superuser = models.BooleanField(default=True,null=True,blank=True)
+    doctor = models.BooleanField(default=False,null=True,blank=True)
+
+    objects = UserManager()
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['name']
+
+    def __str__(self):
+        return self.name
+    def has_perm(self, perm, obj=None):
+        return self.is_admin
+    def has_module_perms(self, add_label):
+        return True
+
+
+
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        print('--------')
+        return self.create_user(email, password, **extra_fields)
+    
+    def get_by_natural_key(self, username, **extra_fields):
+        return self.get(username=username)
+    
+
+
+
+
+
+
+{% comment %} 
+
+{% extends "admin/dash.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/doc.css' %}">
+{% endblock css %}
+
+{% block content %}
+<h1>Upcoming Appointments</h1>
+<table class="table table-bordered" style="margin-left: 30px; margin-top: 50px;">
+    <tr style="gap: 10px; color: royalblue;">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Doctor</th>
+        <th>Contact Number</th>
+        <th>Place</th>
+        <th>Day</th>
+        <th>Show</th>
+    </tr>
+    {% for appointment in upcoming_appointments %}
+    <tr>
+        <td>{{ appointment.id }}</td>
+        <td>{{ appointment.name }}</td>
+        <td>{{ appointment.doctors }}</td>
+        <td>{{ appointment.number }}</td>
+        <td>{{ appointment.place }}</td>
+        <td>{{ appointment.day }}</td>
+        <td>
+            <a href="{% url 'pres1' appointment.id %}">
+                <i class="fa-solid fa-file-circle-plus icon"></i>
+            </a>
+     
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %} {% endcomment %}
+
+
+
+
+
+
+
+
+ <!-- <div class="dashboard">
+                <div class="row" style="margin-top: 30px;">
+                    <!-- Four boxes -->
+                    <div class="col-md-3 one">
+                        <div class="box">
+                            <!-- Box content -->
+                        </div>
+                    </div>
+                    <div class="col-md-3 two">
+                        <div class="box">
+                            <!-- Box content -->
+                        </div>
+                    </div>
+                    <div class="col-md-3 three">
+                        <div class="box">
+                            <!-- Box content -->
+                        </div>
+                    </div>
+                    <div class="col-md-3 four">
+                        <div class="box">
+                            <!-- Box content -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Charts -->
+                <div class="charts">
+                    <!-- Charts content -->
+                </div>
+            </div>
+          -->

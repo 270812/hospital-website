@@ -1,0 +1,29 @@
+.section_2 h1{
+   
+   text-align: center;
+   font-family: 'Courier New', Courier, monospace;
+   color: blue;
+   font-weight: 900;
+
+}
+
+.form-group {
+   margin-bottom: 20px;
+}
+
+.form-label {
+   font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+   .form-label {
+       font-size: 14px;
+   }
+}
+.table th {
+   background-color: #f0f0f0; /* Light gray background color */
+   color: royalblue; /* Royal blue text color */
+   padding: 10px; /* Padding around the text */
+   text-align: left; /* Left-align the text */
+}

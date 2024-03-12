@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Prescription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color:darkkhaki;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color:darkkhaki;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        /* .logo {
+            max-width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        } */
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://preview.colorlib.com/theme/medcare/img/logo.png" alt="Logo" class="logo" width="150px">
+        <h1>DOCTOR PRESCRIPTION</h1>
+    </div>
+    <div class="content">
+        
+        <p><strong>Name:</strong> {{ data.patients.name }}</p>
+        <p><strong>Prescription:</strong> {{ data.prescription }}</p>
+        <p><strong>File:
+            {% if data.image %}
+            <img src="{{data.image.url}}" alt="">
+            {% endif %}
+            </strong></p>
+    </div>
+    <div class="footer">
+        <p>MEDCARE HOSPITAL</p>
+    </div>
+</body>
+
+
+
+<script>
+    $(document).ready(function() {
+        // Make AJAX request
+        const name = '{{data.patients.name}}'
+        const csrfToken = '{{ csrf_token }}';
+        $.ajax({
+            url: '/pdf',
+            type: 'POST',
+            data: {
+                name:name
+            },
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            success: function(data) {
+               console.log(data);
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                console.error('Error:', textStatus);
+            }
+        });
+    });
+</script>
+</html>

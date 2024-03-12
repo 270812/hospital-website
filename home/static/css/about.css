@@ -1,0 +1,55 @@
+.paragraph h2{
+    color:darkblue;
+}
+.paragraph p{
+    font-family: cursive;
+    font-weight: 400;
+    color: cadetblue;
+}
+.position-relative {
+    position: relative;
+}
+
+.content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    z-index: 1;
+}
+
+.content-overlay .content {
+    z-index: 2;
+    opacity: 20;
+}
+
+@media (max-width: 768px) {
+    .position-relative {
+        position: static;
+    }
+
+    .content-overlay {
+        position: static;
+        background: none;
+        color: inherit;
+    }
+}
+.one{
+    color: black;
+    font-size: large;
+}
+
+.container:not(:first-child) .position-relative img {
+    opacity: 0.5; 
+}
+
+
+

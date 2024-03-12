@@ -1,0 +1,428 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/admin/dash.css' %}">
+    {% block css %}{% endblock css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+</head>
+<style>
+  .main {
+    grid-area: main;
+    background-color: white;
+    margin-top: 20px;
+    overflow: scroll;
+}
+.main .part{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+.main .dash{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 2.8rem;
+    font-weight: bolder;
+}
+.main.button{
+   font-size: medium;
+   padding: 6px;
+}
+.main .graph{
+    display: flex;
+    justify-content: space-between;
+    color: grey;
+
+}
+.main .boxes{
+    display: flex;
+    gap: 20px;
+    
+     justify-content: center; 
+    font-size: smaller;
+}
+.main .boxes .container{
+    flex: 1;
+
+    max-width: 300px;
+    padding: 10px;
+  
+    text-align: center;
+ 
+    box-shadow: 5px 5px 5px rgb(229, 205, 205);
+    
+}
+.main .square{
+    font-size: smaller;
+}
+.main .square .rect{
+    box-shadow: 5px 5px 5px rgb(229, 205, 205);
+    padding: 15px;
+    text-align: center;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+.main .data{
+    margin-top: 80px;
+}
+.main .data .front{
+   
+    box-shadow: 5px 5px 5px rgb(229, 205, 205);
+    padding: 20px;
+    text-align: center;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+} 
+
+.footer {
+    grid-area: footer;
+    background-color: whitesmoke;
+}
+</style>
+<body>
+
+
+    <div class="w-100 main_div d-flex">
+        <section class="section_1 ">
+            <img class="img-fluid" src="https://preview.colorlib.com/theme/medcare/img/logo.png" alt="logo" width="150" height="100" >
+            <ul>
+                <i class="fa-solid fa-house-medical icon"></i>
+                <a href="{% url 'dash' %}">Dashboard
+                </a>
+                {% if user.is_admin %}
+                <i class="fa-solid fa-hospital icon"></i>
+                <a href="{% url 'hospital_dep' %}">Departments
+
+                </a>
+
+
+
+                <i class="fa-solid fa-user icon"></i>
+                <a href="{% url 'user' %}">Doctor User</a>
+
+                <i class="fa-solid fa-user-doctor icon"></i>
+                <a href="{% url 'hospital_doc' %}">Doctors
+                </a>
+                <i class="fa-solid fa-book-open icon"></i>
+                <a href="{% url 'apntmnt' %}">Appointments
+                </a>
+                
+                <i class="fa-solid fa-bed icon"></i>
+                <a href="{% url 'patient' %}">Patients</a>
+                {% endif %}
+
+                {% if user.doctor %}
+                <i class="fa-regular fa-calendar-days icon"></i>
+                <a href="{% url 'today' %}">Today's Appointments</a>
+                <i class="fa-regular fa-calendar-days icon"></i>
+                <a href="{% url 'upcoming_appointments' %}">Upcoming Appointments</a>
+                <i class="fa-regular fa-calendar-days icon"></i>
+                <a href="{% url 'previous' %}">Previous Appointments</a>
+                {% endif %}
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <a href="{% url 'logout' %}">Logout</a>
+
+
+                   
+            </ul>
+        </section>
+        <section class="section_2" style="height: 100vh; overflow-y: scroll;" >
+            {% block content %}
+           
+            <div class="container-fluid">
+              <div class="row">
+                  <div class="col-9">
+                      <!-- Search Bar -->
+                      <div class="input-group mt-3 mb-3">
+                          <input style="border-radius: 5px; border-color: blue;" type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="button-addon2">
+                          <button style="border-radius: 5px; border-color: blue;" class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                      </div>
+                  </div>
+                  <div class="col-3 d-flex justify-content-end align-items-center" style="color: dodgerblue; font-size: 20px;">
+                      <!-- Icons -->
+                      <i class="fas fa-bell mx-3"></i>
+                      <i class="fas fa-bell mx-3"></i>
+                      <i class="fas fa-book mx-3"></i>
+                  </div>
+              </div>
+          </div>
+           
+        <main class="main" >
+            <div class="part" >
+                <div class="dash" style="margin-left: 20px;">
+                    <span>Dashboard</span>
+                </div>
+                <div class="button" style="margin-right: 15px;">
+                  
+                  <div>
+                    <button class="btn btn-primary" style="padding: 10px;  color: white; border: none; border-radius: 5px; cursor: pointer; font-size: large; font-weight: normal; border-radius: 5px; display: flex; justify-content: space-between; gap: 8px; height: 50px;"><i style="font-size: larger; font-weight:normal; margin-top: 3px;"   class='bx bx-user-plus' >  <a href="{% url 'add_user' %}"></a></i>invite users</button>
+
+                    
+                  </div>
+                </div>
+            </div>
+             <div class="boxes ">
+                <div class="container" style="display: flex;">
+                   <div class="user" style="display: flex; align-content: center; justify-content: center; margin-top: 80px;">
+
+                    
+                       <!-- <p style="color: gray;">TOTAL APPOINTMENTS <span style="font-weight: bolder; font-size: 2rem; margin-top: 85px; color: black;">{{ total_appointments }}</span></p> -->
+                       <p style="color: gray;">TOTAL APPOINTMENTS <span id="total-appointments-count" style="font-weight: bolder; font-size: 2rem; margin-top: 85px; color: black;"></span></p>
+                       
+                   </div>
+                     <div>
+                        <div id="chart"></div>
+                      </div> 
+
+                </div>
+                <div class="container" style="display: flex;">
+                    <div class="user" style="display: flex; align-content: center; justify-content: center; margin-top: 80px;">
+                      <p style="color: gray;">DEPARTMENTS <span id="total-departments-count" style="font-weight: bolder; font-size: 2rem; margin-top: 85px; color: black;"></span></p>
+
+                        <!-- <p style="color: gray;">DEPARTMENTS <span style="font-weight: bolder; font-size: 2rem; margin-top: 85px; color: black;">29.4%</span></p> -->
+                        <!-- <div>29.4%</div> -->
+                    </div>
+                    <div>
+                        <div id="chart1"></div>
+                      </div>
+                </div>
+                <div class="container" style="display: flex;">
+                     <div class="user" style="display: flex; align-content: center; justify-content: center; margin-top: 80px;">
+
+                         <!-- <p style="color: gray;">PATIENTS LIST <span style="font-weight: bolder; font-size: 2rem ; margin-top: 85px; color: black;">56.8%</span></p>
+                         <p style="color: gray;">PATIENTS LIST <span id="totalPatients" style="font-weight: bolder; font-size: 2rem; margin-top: 85px; color: black;"></span></p> -->
+                     
+                         <p style="color: gray;">TOTAL PATIENTS <span id="total-patients-count" style="font-weight: bolder; font-size: 2rem; margin-top: 85px; color: black;"></span></p>
+                      
+                     </div>
+                    <div>
+                        <div id="chart2"></div>
+                      </div>
+                </div>
+                <div class="container" style="display: flex;">
+                    <div class="user" style="display: flex; align-content: center; justify-content: center; margin-top: 80px;">
+
+                      <p style="color: gray;">TOTAL DOCTORS <span id="total-doctors-count" style="font-weight: bolder; font-size: 2rem; margin-top: 85px; color: black;"></span></p>
+                        
+                    </div>
+                   <div>
+                    <div id="chart3"></div>
+                  </div>
+                </div>
+             </div>
+             
+               
+           
+                
+          
+
+
+                <div class="month" style="display: flex; justify-content: space-between;">
+                  <div>
+
+                    <div class="second" style="display: flex; justify-content: space-between; text-align: center; margin-top: 50px;">
+                        <h5 style="font-weight: bold;">PATIENTS DATA</h5>
+
+                    </div>
+                    <!-- <div class="week" style="display: flex;">
+                        <button>this week</button>
+                        <button>last week</button> 
+
+                    </div> -->
+                    <h1 style="font-weight: 1rem; margin-top: 10px;">35%</h1>
+                    <div style="margin-right: 90px; margin-top: 30px; width: 600px;">
+                        <div id="chart4"></div>
+                    </div>
+                  </div>
+
+
+                    <div style="margin-top: 120px; margin-right: 50px;">
+                      <img src="https://img.freepik.com/premium-vector/covid19-prevention-infographic-design-concept_217203-290.jpg?w=740" alt="" height="500px" width="500px">
+                    </div>
+                </div>
+             </div>
+
+
+
+           
+        </main>
+            {% endblock content %}
+        </section>
+        <script>
+  
+
+
+
+//apexcharts
+
+   
+var options = {
+          series: [{
+            name: "27 May,true",
+             data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+        }],
+          chart: {
+          height: 200,
+          outerWidth:chart,
+          type: 'line',
+          zoom: {
+            enabled: false
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        // title: {
+        //   text: 'Product Trends by Month',
+        //   align: 'left'
+        // },
+        grid: {
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
+          },
+        },
+        // xaxis: {
+        //   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        // }
+        };
+
+        var chart1 = new ApexCharts(document.querySelector("#chart"), options);
+        chart1.render();
+        var chart1 = new ApexCharts(document.querySelector("#chart1"), options);
+        chart1.render();
+        var chart2 = new ApexCharts(document.querySelector("#chart2"), options);
+        chart2.render();
+        var chart3 = new ApexCharts(document.querySelector("#chart3"), options);
+        chart3.render();
+
+
+        var options = {
+          series: [{
+          // name: 'Servings',
+          data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35]
+        }],
+          annotations: {
+          points: [{
+            x: 'Bananas',
+            seriesIndex: 0,
+            label: {
+              borderColor: '#775DD0',
+              offsetY: 0,
+              style: {
+                color: '#fff',
+                background: '#775DD0',
+              },
+              text: 'Bananas are good',
+            }
+          }]
+        },
+        chart: {
+          height: 350,
+          type: 'bar',
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 5,
+            columnWidth: '50%',
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          width: 1
+        },
+        
+        grid: {
+          row: {
+            colors: ['#fff', '#f2f2f2']
+          }
+        },
+        xaxis: {
+          labels: {
+            rotate: -45
+          },
+          // categories: ['Apples', 'Oranges', 'Strawberries', 'Pineapples', 'Mangoes', 'Bananas',
+          //   'Blackberries', 'Pears', 'Watermelons', 'Cherries', 'Pomegranates', 'Tangerines', 'Papayas'
+          // ],
+          tickPlacement: 'on'
+        },
+        yaxis: {
+          title: {
+            text: 'Servings',
+          },
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shade: 'light',
+            type: "horizontal",
+            shadeIntensity: 0.25,
+            gradientToColors: undefined,
+            inverseColors: true,
+            opacityFrom: 0.85,
+            opacityTo: 0.85,
+            stops: [50, 0, 100]
+          },
+        }
+        };
+
+        var chart4 = new ApexCharts(document.querySelector("#chart4"), options);
+        chart4.render();
+
+
+
+        fetch("{% url 'get_total_appointments' %}")
+        .then(response => response.json())
+        .then(data => {
+            // Update total appointments count in the HTML
+            document.getElementById('total-appointments-count').innerText = data.total_appointments;
+        })
+        .catch(error => console.error('Error:', error));
+
+
+        fetch("{% url 'get_total_departments' %}")
+        .then(response => response.json())
+        .then(data => {
+            // Update total departments count in the HTML
+            document.getElementById('total-departments-count').innerText = data.total_departments;
+        })
+        .catch(error => console.error('Error:', error));
+
+        fetch("{% url 'get_total_patients' %}")
+        .then(response => response.json())
+        .then(data => {
+            // Update total patients count in the HTML
+            document.getElementById('total-patients-count').innerText = data.total_patients;
+        })
+        .catch(error => console.error('Error:', error));
+
+
+        fetch("{% url 'get_total_doctors' %}")
+        .then(response => response.json())
+        .then(data => {
+            // Update total doctors count in the HTML
+            document.getElementById('total-doctors-count').innerText = data.total_doctors;
+        })
+        .catch(error => console.error('Error:', error));
+    
+</script>
+<script src="../static/js/index.js"></script>
+
+  

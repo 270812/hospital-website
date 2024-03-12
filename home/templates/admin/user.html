@@ -1,0 +1,75 @@
+{% extends "admin/dash.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/doc.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+<div class="" >
+    <h1>Doctor Dashboard</h1>
+    <button type="submit" class="btn btn-primary" style="margin-left: 1000px; height:50px;" >
+        <a style="color: white; text-decoration: none; font-style: oblique;" href="{% url 'add_user' %}">+Add users</a>
+    </button>
+    <div class="table" style="margin-top: 60px; margin-left: 30px; "  >
+      <table class="table table-borderd">
+          <tr style="gap: 10px; color:royalblue;">
+              
+              <th >id</th>
+              <th>Name</th> 
+              <th>Email</th>
+              <th>is_admin</th>
+              <th>is_doctor</th>
+              <th>Actions</th>
+              
+
+          </tr>
+          {% for i in data %}
+          <tr>
+              
+              
+            
+             
+              <td>{{i.id}}</td>
+              <td>{{i.name}}</td>
+              <td>{{i.email}}</td>
+            
+              <td>
+                {% if i.is_admin %}
+                <span style="color: green;" class="test-success">yes</span>
+                {% else %}
+                <span style="color: red;" class="test-danger">no</span>
+                {% endif %}
+            </td>
+              <td>
+                {% if i.doctor %}
+                <span style="color: green;" class="test-success">yes</span>
+                {% else %}
+                <span style="color: red;" class="test-danger">no</span>
+                {% endif %}
+            </td>
+             
+              <td>
+                  <a  href="{% url 'user_edit' i.id %}">
+                    <i class="fa-solid fa-pen"></i>
+                  </a>
+                  
+                
+               
+              </td>
+            
+              
+          </tr>    
+          {% endfor %}
+
+
+
+
+
+
+      </table>
+
+  </div>
+
+{% endblock content %}

@@ -1,0 +1,165 @@
+{% extends "index.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock css %}
+
+
+
+{% block content %}
+<main style="background-image: url(); background-repeat: no-repeat; background-size: cover; margin-bottom: 50px; margin-top: 100px;">
+ 
+   
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 image" style="margin-top: 100px ; margin-bottom: 80px;">
+                    <img src="https://img.freepik.com/free-photo/concentrated-doctor-working-with-virtual-screen_1134-639.jpg?t=st=1708584927~exp=1708588527~hmac=24b879845f445cd419e6c7a7b636ea4c453aa389e090e3a16e2632969feb6ad7&w=740" class="img-fluid image" alt="..."> 
+            
+                    
+    
+    
+                </div>
+                <div class="col-md-6 paragraph  " style="margin-top: 100px;">
+                    <h2 class="mb-4">
+                        <i class="fa-solid fa-syringe">ABOUT MEDCARE</i> 
+                    </h2>
+                    <p>
+                        Medcare is a renowned medical institution in Italy, widely acknowledged for its excellence in medical education, healthcare services, and cutting-edge research. Established in 1956 in Italy, Medcare operates autonomously under the Ministry of Health and Family Welfare, Government of Italy. With a primary focus on producing highly skilled healthcare professionals, Medcare offers comprehensive undergraduate and postgraduate medical education programs, including courses in nursing, dental surgery, and allied health sciences. The institution has consistently played a pivotal role in advancing medical research, contributing significantly to the fields of medicine and biomedical sciences.
+                    </p>
+                    <button type="submit" class="btn btn-primary" style="font-family: 'Courier New', Courier, monospace;">LEARN MORE </button>
+    
+                </div>
+                
+    
+            </div>
+        </div>
+    
+        <div class="">
+            <div class="row" style="background-image: url();background-repeat: no-repeat; background-size: cover;">
+                <!-- <div class="col-md-6 position-relative" style="margin-top: 50px ; margin-bottom: 80px;">
+                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu95FmbJ7kf7Kgy9XYYQ4314hDzJVh7trgaA&usqp=CAU" class="img-fluid" alt="..." height="900px" width="900px" > 
+                    <div class="content-overlay">
+                        <div class="content">
+                            <h2 class="mb-4">
+                                ABOUT OURTEAM 
+                            </h2>
+                            <p>
+                              cd
+                                The doctors group at Medcare Hospital comprises a dedicated team of highly skilled medical professionals who are committed to providing exceptional healthcare services to our patients. With a diverse range of specialties and extensive experience in their respective fields, our doctors work collaboratively to ensure comprehensive and personalized treatment plans for each patient
+                            </p>
+                   
+                            <button type="submit" class="btn btn-primary">
+                                <a style="color: white; text-decoration: none;" href="{% url 'department' %}">Our Departments</a>
+                            </button>
+                        </div>
+                    </div>
+                </div> -->
+    
+    
+    
+    
+    
+                <!-- <div class="col-md-6 position-relative" style="margin-top: 50px ; margin-bottom: 80px;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROz78RNZ4IBpLVApl3qASM5GqjwxP0QEC-uA&usqp=CAU" class="img-fluid" alt="..." height="900px" width="900px" >
+                    <div class="content-overlay">
+                        <div class="content">
+                            <h2 class="mb-4">
+                                CONSULTATION TIME
+                            </h2>
+                            <p>
+                              <div class="one" style="display: flex; justify-content: space-around; ">
+                                <h4>Monday</h4>
+                                <h4>8.00-6.00</h4>
+                              </div>
+                              <div class="one" style="display: flex; justify-content: space-around;">
+                                <h4>Tuesday</h4>
+                                <h4>8.00-6.00</h4>
+    
+                              </div>
+                              <div class="one" style="display: flex; justify-content: space-around;">
+                                <h4>wednesday</h4>
+                                <h4>8.00-6.00</h4>
+                              </div>
+                              <div class="one" style="display: flex; justify-content: space-around;">
+                                <h4>Thursday</h4>
+                                <h4>9.00-7.00</h4>
+                              </div>
+                              <div class="one" style="display: flex; justify-content: space-around;">
+                                <h4>Friday</h4>
+                                <h4>1.00-9.00</h4>
+                              </div>
+                                <div class="one" style="display: flex; justify-content: space-around;">
+                                    <h4>saturday,sunday</h4>
+                                    <h4>Off</h4>
+                                    
+                                </div>
+                              </div>
+    
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+               
+                </div> -->
+
+
+
+                <div id="carouselExampleDark" class="carousel carousel-dark slide" style="width: 750px; margin: auto;background-image: url();background-repeat: no-repeat; background-size: cover; margin-bottom: 100px;" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner container">
+                      <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="https://img.freepik.com/premium-photo/abstract-atom-molecule-structure_36845-8.jpg?w=740" class="d-block w-100" alt="..."  >
+                        <div class="carousel-caption d-none d-md-block">
+                          <h2  style="color: darkslategray;">About Our Team</h2 >
+                          <p>The doctors group at Medcare Hospital comprises a dedicated team of highly skilled medical professionals who are committed to providing exceptional healthcare services to our patients. With a diverse range of specialties and extensive experience in their respective fields, our doctors work collaboratively to ensure comprehensive and personalized treatment plans for each patient</p>
+                        </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://img.freepik.com/premium-photo/abstract-atom-molecule-structure_36845-8.jpg?w=740"  class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                          <h2 >CONSULTATION Time</h2>
+                          <h4 >Monday -     9.00 -6.00 <br>
+                            tuesday -     9.00 -6.00 <br>
+                            wednesday-    9.00 -6.00 <br>
+                            Thursday-     9.00 -6.00 <br>
+                            Friday-       9.00 -6.00 <br>
+                            saturday      10.00 -4.00 <br>
+                            Sunday-       off
+                          </h4>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://img.freepik.com/premium-photo/abstract-atom-molecule-structure_36845-8.jpg?w=740" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5>Our specialties</h5>
+                          <p>Medcare Hospital. However, hospitals like Medcare typically offer a wide range of medical specialties and services to cater to various healthcare needs. These specialties may include Internal Medicine, Pediatrics, Obstetrics and Gynecology, Orthopedics, Cardiology, Oncology, Neurology, Dermatology, Psychiatry, Surgery, and more. Each specialty focuses on diagnosing, treating, and preventing specific medical conditions, ensuring comprehensive healthcare for patients of all ages and with diverse medical needs</p>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                  
+        </div>
+    </div>
+</main>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends "admin/dash.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/form2.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+<h1>
+    Department DashBoard
+</h1>
+<div class="container">
+    <form method="post" style="margin-top: 60px;"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Department name">
+        </div>
+       
+    
+        <div class="form-group">
+            <label for="image">Image:</label><br>
+            <input type="file" class="form-control-file"  name="image" id="image">
+        </div><br>
+
+        <button type="submit" class="btn btn-primary text-white">
+            Submit
+        </button>
+    </form>
+</div>
+
+{% endblock content %}

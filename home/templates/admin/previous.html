@@ -1,0 +1,43 @@
+
+
+
+
+{% extends "admin/dash.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/doc.css' %}">
+
+{% endblock css %}
+
+{% block content %}
+
+<h1>Previous Appointments</h1>
+<table class="table table-bordered" style="margin-left: 30px; margin-top: 50px;">
+    <tr style="gap: 10px; color:royalblue;">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Doctor</th>
+        <th>Contact Number</th>
+        <th>Place</th>
+        <th>Action</th>
+    </tr>
+    {% for appointment in previous_appointments %}
+    <tr>
+        <td>{{ appointment.id }}</td>
+        <td>{{ appointment.name }}</td>
+        <td>{{ appointment.doctors }}</td>
+        <td>{{ appointment.number }}</td>
+        <td>{{ appointment.place }}</td>
+       
+        <td>
+            <a href="{% url 'pres' appointment.id  %}">
+                <i class="fa-solid fa-file-circle-plus icon"></i>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}
+

@@ -1,0 +1,72 @@
+{% extends "admin/dash.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/form2.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+<h1>
+    Doctors DashBoard
+</h1>
+<div class="container" >
+    <form method="post" style="margin-top: 60px;"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Doctor:</label>
+            <select class="form-control" name="doctor" id="doctor">
+                <option value="">Select Doctor</option>
+                {% for doctor in doc%}
+                <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+                {% endfor %}
+            </select>
+            <!-- <input type="text" class="form-control" id="name" name="name" placeholder="doctor name"> -->
+        </div>
+       
+          <!-- <div class="form-group">
+            <label for="description">Departments</label>
+            <input type="text" class="form-control" id="description" name="description" placeholder="department">
+        </div>  -->
+
+
+
+        <label for="description">Departments</label>
+        <select class="form-control" name="departments" id="department">
+            <option value="">Select Department</option>
+            {% for d in dep%}
+            <option value="{{ d.id }}">{{ d.name }}</option>
+            {% endfor %}
+        </select>
+
+
+
+        <div class="form-group">
+            <label for="image">Image:</label><br>
+            <input type="file" class="form-control-file"  name="image" id="image">
+        </div><br>
+
+
+
+
+
+
+        <div class="form-group">
+            <label for="days">Availability:</label><br>
+            <input type="checkbox" name="monday"  id="monday" > Monday<br>
+            <input type="checkbox" name="tuesday" id="tuesday" > Tuesday<br>
+            <input type="checkbox" name="wednesday" id="wednesday" > Wednesday<br>
+            <input type="checkbox" name="thursday" id="thursday" > Thursday<br>
+            <input type="checkbox" name="friday" id="friday" > Friday<br>
+            <input type="checkbox" name="saturday" id="saturday" > Saturday<br>
+            <input type="checkbox" name="sunday" id="sunday" > Sunday<br>
+        </div><br>
+        <button style="text-align: center;" type="submit" class="btn btn-primary text-white">
+            Submit
+        </button>
+    </form>
+</div>
+
+
+
+{% endblock content %}
